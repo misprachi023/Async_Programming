@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stopwatch</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  
+  
+}
+
+.stopwatch {
+  font-size: 20px;
+  font-weight: bolder;
+  margin-bottom: 20px;
+}
+
+.button-group button {
+  margin: 0 10px;
+  color: brown;
+  
+}
+</style>
+</head>
+<body>
+  <h1>Stopwatch</h1>
+
+  <div class="stopwatch">
+    <span id="days">00</span>d:
+    <span id="hours">00</span>hr:
+    <span id="minutes">00</span>m:
+    <span id="seconds">00</span>s
+  </div>
+
+  <div class="button-group">
+    <button onclick="startStopwatch()">Start</button>
+    <button onclick="pauseStopwatch()">Pause</button>
+    <button onclick="resetStopwatch()">Reset</button>
+  </div>
+
+  <script>
+    let stopwatchInterval;
+   let isRunning = false;
+    let days =0, hours = 0, minutes = 0, seconds = 0;
+
+   function startStopwatch() {
+  if (!isRunning) {
+    stopwatchInterval = setInterval(updateStopwatch, 1000);
+    isRunning = true;
+  }
+}
+
+function updateStopwatch() {
+  seconds++;
+  if (seconds === 60) {
+    seconds = 0;
+    minutes++;
+    if (minutes === 60) {
+      minutes = 0;
+      hours++;
+      if (hours === 24) {
+        hours = 0;
+        days++;
+      }
+  }
+}
+  displayTime();
+}
+
+function displayTime() {
+  const daysSpan = document.getElementById('days')
+  const hoursSpan = document.getElementById('hours');
+  const minutesSpan = document.getElementById('minutes');
+  const secondsSpan = document.getElementById('seconds');
+
+  daysSpan.innerText = days.toString().padStart(2, '0')
+  hoursSpan.innerText = hours.toString().padStart(2, '0');
+  minutesSpan.innerText = minutes.toString().padStart(2, '0');
+  secondsSpan.innerText = seconds.toString().padStart(2, '0');
+}
+
+function pauseStopwatch() {
+  clearInterval(stopwatchInterval);
+  isRunning = false;
+}
+
+function resetStopwatch() {
+  clearInterval(stopwatchInterval);
+  isRunning = false;
+  days = 0;
+  hours = 0;
+  minutes = 0;
+  seconds = 0;
+  displayTime();
+}
+
+  </script>
+</body>
+</html>
