@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Slideshow</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+.slideshow-container {
+  position: relative;
+  margin: auto;
+}
+
+.mySlides {
+  display: none;
+}
+
+img {
+  width: 100%;
+}
+
+button {
+  margin-top: 10px;
+  
+}
+
+  </style>
+</head>
+<body>
+  <div class="slideshow-container">
+    <div class="mySlides">
+      <img src="https://thewowstyle.com/wp-content/uploads/2015/01/images-of-nature-4.jpg" style="width:60%">
+    </div>
+
+    <div class="mySlides">
+      <img src="http://www.hdwallpaper.nu/wp-content/uploads/2015/09/tropical_beach_blue_summer_sea_emerald_sand_hd-wallpaper-1701606.jpg" style="width:60%">
+    </div>
+
+    <div class="mySlides">
+      <img src="https://www.wallpapers13.com/wp-content/uploads/2019/07/Sunrise-landscape-photography-early-morning-swamp-evaporation-streaming-sky-Download-4k-wallpaper-images-for-your-desktop-background.jpg" style="width:60%">
+    </div>
+    <div class="mySlides">
+        <img src="http://www.pixelstalk.net/wp-content/uploads/2016/08/Cool-Nature-Background-Images-4523x2590.jpg" style="width:60%">
+      </div>
+    <div class="mySlides">
+        <img src="https://jooinn.com/images/beauty-of-nature-24.jpg" style="width:60%">
+      </div>
+    <div class="mySlides">
+        <img src="https://img.wallpapersafari.com/desktop/1680/1050/83/57/8E7zGf.jpg" style="width:60%">
+      </div>
+    <div class="mySlides">
+        <img src="https://www.bandt.com.au/information/uploads/2020/10/GettyImages-1149030626-Large.jpg" style="width:60%">
+      </div>
+    <div class="mySlides">
+        <img src="https://wallpapertag.com/wallpaper/full/3/d/b/477186-popular-religious-easter-backgrounds-3840x2160.jpg" style="width:60%">
+      </div>
+    <div class="mySlides">
+        <img src="https://www.psdstack.com/wp-content/uploads/2019/08/copyright-free-images-750x420.jpg" style="width:60%">
+      </div>
+    <div class="mySlides">
+        <img src="https://www.pixelstalk.net/wp-content/uploads/2016/07/3D-Nature-Images.jpg" style="width:60%">
+      </div>
+    <button onclick="toggleSlideshow()" id="slideshowBtn">Start Slideshow</button>
+    <button onclick="plusSlides(-1)">Previous</button>
+    <button onclick="plusSlides(1)">Next</button>
+  </div>
+
+  <script>
+    let slideIndex = 0;
+    let slideshowInterval;
+    let isSlideshowRunning = false;
+
+  function showSlides() 
+   {
+     const slides = document.getElementsByClassName("mySlides");
+
+     for (let i = 0; i < slides.length; i++) 
+       {
+         slides[i].style.display = "none";
+        }
+
+      slideIndex++;
+      if (slideIndex > slides.length) 
+       {
+         slideIndex = 1;
+        }
+
+      slides[slideIndex - 1].style.display = "block";
+    }
+
+  function toggleSlideshow() 
+   {
+     if (!isSlideshowRunning) 
+       {
+         document.getElementById("slideshowBtn").innerText = "Stop Slideshow";
+         slideshowInterval = setInterval(showSlides, 2000);
+        } else 
+        {
+         document.getElementById("slideshowBtn").innerText = "Start Slideshow";
+         clearInterval(slideshowInterval);
+        }
+
+      isSlideshowRunning = !isSlideshowRunning;
+    }
+
+  function plusSlides(n) 
+  {
+     clearInterval(slideshowInterval);
+     isSlideshowRunning = false;
+  
+     slideIndex += n;
+      const slides = document.getElementsByClassName("mySlides");
+
+     if (slideIndex > slides.length) 
+       {
+         slideIndex = 1;
+        } 
+        else if (slideIndex < 1) 
+       {
+         slideIndex = slides.length;
+        }
+
+      for (let i = 0; i < slides.length; i++) 
+       {
+         slides[i].style.display = "none";
+       }
+
+      slides[slideIndex - 1].style.display = "block";
+    }
+
+  showSlides();
+
+  </script>
+</body>
+</html>
